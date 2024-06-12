@@ -1,0 +1,91 @@
+substitutions:
+  # Change device name to match your desired name
+  device_name: "ld2420-1"
+  # Change sensor name below to the one you want to be exposed in Home Assistant
+  device_name_pretty: LD2411S-3
+  # UART TX Pin
+  uart_tx_pin: GPIO01
+  # UART RX Pin
+  uart_rx_pin: GPIO03
+
+esphome:
+  name: $device_name
+  platform: ESP8266
+  board: d1_mini
+
+logger:
+  baud_rate: 0
+  logs:
+    sensor: INFO
+
+debug:
+    
+# Enable Home Assistant API
+api:
+  encryption:
+    key: ec6xMvdZx34ztF6w8DTZSgj8WVzFsDJ4ADJF7bZPhmo=
+
+ota:
+  password: "L3tme0ut!23"
+
+wifi:
+  networks:
+  - ssid: "deviceaversa"
+    password: "MyI0TN3t!"
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "ld-2411S-3 Fallback Hotspot"
+    password: "fZDflTpOFoBR"
+    
+
+uart:
+  tx_pin: GPIO01 # Change to the pin connected to LD2420 RX
+  rx_pin: GPIO03 # Change to the pin connected to LD2420 TX
+  baud_rate: 115200 # Set baud rate according to your LD2420 firmware version
+
+ld2420:
+
+sensor:
+  - platform: ld2420
+    moving_distance:
+      name: "LD2420 Moving Distance"    
+
+binary_sensor:
+  - platform: ld2420
+    has_target:
+      name: "LD2420 Presence"
+#  - platform: gpio
+#    pin: D2
+#    name: "${device_name} Presence signal"
+#    device_class: occupancy
+  
+select:
+  - platform: ld2420
+    operating_mode:
+      name: "LD2420 Operating Mode"
+
+number:
+  - platform: ld2420
+    presence_timeout:
+      name: "LD2420 Detection Presence Timeout"
+    min_gate_distance:
+      name: "LD2420 Detection Gate Minimum"
+    max_gate_distance:
+      name: "LD2420 Detection Gate Maximum"
+
+button:
+  - platform: ld2420
+    apply_config:
+      name: "Apply LD2420 Config"
+    factory_reset:
+      name: "LD2420 Factory Reset"
+    restart_module:
+      name: "Restart LD2420 Module"
+    revert_config:
+      name: "Undo LD2420 Edits"
+
+text_sensor:
+  - platform: ld2420
+    fw_version:
+      name: LD2420 Firmware
