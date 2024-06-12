@@ -23,20 +23,20 @@ debug:
 # Enable Home Assistant API
 api:
   encryption:
-    key: ec6xMvdZx34ztF6w8DTZSgj8WVzFsDJ4ADJF7bZPhmo=
+    key: <your key>
 
 ota:
   password: "L3tme0ut!23"
 
 wifi:
   networks:
-  - ssid: "deviceaversa"
-    password: "MyI0TN3t!"
+  - ssid: "wifi ssid"
+    password: "wifi password!"
 
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
     ssid: "ld-2411S-3 Fallback Hotspot"
-    password: "fZDflTpOFoBR"
+    password: "your password"
     
 
 uart:
