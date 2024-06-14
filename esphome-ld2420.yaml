@@ -55,11 +55,7 @@ binary_sensor:
   - platform: ld2420
     has_target:
       name: "LD2420 Presence"
-#  - platform: gpio
-#    pin: D2
-#    name: "${device_name} Presence signal"
-#    device_class: occupancy
-  
+
 select:
   - platform: ld2420
     operating_mode:
