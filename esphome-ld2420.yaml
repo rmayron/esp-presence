@@ -26,7 +26,7 @@ api:
     key: <your key>
 
 ota:
-  password: "L3tme0ut!23"
+  password: "<your password>"
 
 wifi:
   networks:
